@@ -32,7 +32,7 @@ def add_street(x,y):
         else:
             print "Check for paranthesis"
     else:
-        print "Please enter again"
+        print "Please enter correct command"
                     
 
 def change_street(x,y):
