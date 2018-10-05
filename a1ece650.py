@@ -59,7 +59,7 @@ def remove_street(x):
     try:
         del database[x]
     except KeyError:
-        sys.stderr.write("Error: " + x + " Street not Found to delete")
+        sys.stderr.write("Error: " + x + " Street not Found to delete" + "\n)
 
 
 def Is_valid_street(street):
