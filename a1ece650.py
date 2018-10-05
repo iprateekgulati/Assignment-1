@@ -316,14 +316,24 @@ def main():
             continue
 
         if command == 'a':
-            add_street(street_name,gps_coordinates)
-
+            try:
+                add_street(street_name,gps_coordinates)
+            except UnboundLocalError:
+                sys.stderr.write("Error: " + "please enter full command!")
+                
 
         elif command == 'c':
-            change_street(street_name,gps_coordinates)
+            try:
+                change_street(street_name,gps_coordinates)
+            except UnboundLocalError:
+                sys.stderr.write("Error: " + "please enter full command!")
 
         elif command == 'r':
-            remove_street(street_name)
+            try:
+                remove_street(street_name)
+            except UnboundLocalError:
+                sys.stderr.write("Error: " + "please enter full command!")
+
 
 
         elif command == 'g':
