@@ -312,27 +312,27 @@ def main():
             street_name = case_insesitive(street_name)
             gps_coordinates = regexp[2]
         else:
-            sys.stdout.write("Error: " + "Wrong selection of user_input")
+            sys.stdout.write("Error: " + "Wrong selection of user_input" + "\n")
             continue
 
         if command == 'a':
             try:
                 add_street(street_name,gps_coordinates)
             except UnboundLocalError:
-                sys.stderr.write("Error: " + "please enter full command!")
+                sys.stderr.write("Error: " + "please enter full command!" + "\n")
                 
 
         elif command == 'c':
             try:
                 change_street(street_name,gps_coordinates)
             except UnboundLocalError:
-                sys.stderr.write("Error: " + "please enter full command!")
+                sys.stderr.write("Error: " + "please enter full command!" + "\n")
 
         elif command == 'r':
             try:
                 remove_street(street_name)
             except UnboundLocalError:
-                sys.stderr.write("Error: " + "please enter full command!")
+                sys.stderr.write("Error: " + "please enter full command!" + "\n")
 
 
 
@@ -340,7 +340,7 @@ def main():
             display_graph()
 
         else:
-            print 'Error: ' + 'Wrong input please try again'
+            print 'Error: ' + 'Wrong input please try again' + "\n"
 
 
 if __name__ == '__main__':
