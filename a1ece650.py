@@ -340,7 +340,7 @@ def main():
             display_graph()
 
         else:
-            print 'Error: ' + 'Wrong input please try again' + "\n"
+            print 'Error: ' + 'Wrong input please try again'
 
 
 if __name__ == '__main__':
