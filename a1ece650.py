@@ -59,8 +59,8 @@ def remove_street(x):
     try:
         del database[x]
     except KeyError:
-        sys.stderr.write("Error: " + x + " Street not Found to delete" + "\n)
-
+        sys.stderr.write("Error: " + x + " Street not Found to delete" + "\n")
+ 
 
 def Is_valid_street(street):
     if all(x.isalpha() or x.isspace() for x in street):
