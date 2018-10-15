@@ -6,11 +6,18 @@ from decimal import Decimal
 
 database = dict()
 
+
 def can_change(x):
     if x in database:
-            return True
+        return True
     else:
-            return False
+        return False
+
+def can_add(x):
+    if x in database:
+        return False
+    else:
+        return True
 
 
 def case_insesitive(x):
@@ -18,49 +25,53 @@ def case_insesitive(x):
     return y
 
 
-def add_street(x,y):
-    if(Is_valid_street(x)):
-        if(do_parentheses_match(y)):
-            y = re.sub(' +', '', y)
-            y = re.sub('\)\(', ') ( ', y)
-            y = re.sub('\( ', '(', y)
-            y = y.split(' ')
-            if all(Is_valid_location(i) for i in y):
-                        database[x] = y
-            else:
-                print "enter valid vertices"
-        else:
-            print "Check for paranthesis"
-    else:
-        print "Please enter correct command"
-                    
-
-def change_street(x,y):
-    z= can_change(x)
-    if(z == True):
-        if(Is_valid_street(x)):
-            if(do_parentheses_match(y)):
+def add_street(x, y):
+    if (can_add(x)):
+        if (Is_valid_street(x)):
+            if (do_parentheses_match(y)):
                 y = re.sub(' +', '', y)
                 y = re.sub('\)\(', ') ( ', y)
                 y = re.sub('\( ', '(', y)
                 y = y.split(' ')
                 if all(Is_valid_location(i) for i in y):
-                        database[x] = y
+                    database[x] = y
                 else:
-                    print "enter valid vertices"
+                    print "Error: enter valid vertices"
             else:
-                print "Check for paranthesis"
+                print "Error: Check for paranthesis"
         else:
-            print "Enter again"
+            print "Error: Please enter correct command"
     else:
-        print "Street cannot be changed"
+        print "Error: Street Currently exist"
+
+
+def change_street(x, y):
+    z = can_change(x)
+    if (z == True):
+        if (Is_valid_street(x)):
+            if (do_parentheses_match(y)):
+                y = re.sub(' +', '', y)
+                y = re.sub('\)\(', ') ( ', y)
+                y = re.sub('\( ', '(', y)
+                y = y.split(' ')
+                if all(Is_valid_location(i) for i in y):
+                    database[x] = y
+                else:
+                    print "Error: enter valid vertices"
+            else:
+                print "Error: Check for paranthesis"
+        else:
+            print "Error: Enter again"
+    else:
+        print "Error: 'c' or 'r' specified for a street that does not exist."
+
 
 def remove_street(x):
     try:
         del database[x]
     except KeyError:
         sys.stderr.write("Error: " + x + " Street not Found to delete" + "\n")
- 
+
 
 def Is_valid_street(street):
     if all(x.isalpha() or x.isspace() for x in street):
@@ -87,13 +98,15 @@ def do_parentheses_match(input_string):
 
     return balanced and len(s) == 0
 
+
 def Is_valid_location(x):
     regex = r'\(-?\d+,-?\d+\)'
-    preg= re.compile(regex)
-    if(preg.match(x)):
+    preg = re.compile(regex)
+    if (preg.match(x)):
         return True
-    else: 
+    else:
         return False
+
 
 def display_graph():
     vertices = list()
@@ -101,7 +114,7 @@ def display_graph():
     graph_edges = list()
     graph_edgeset = set()
     graph_set = set()
-    duplicate_edges=list()
+    duplicate_edges = list()
     vertex_list = dict()
     list_intersection = list()
     vertices_intersection = list()
@@ -244,56 +257,57 @@ def display_graph():
             distinct_set = set(distinct)
             distinct = list(distinct_set)
             for n1 in range(0, len(distinct)):
-                for n2 in range(n1+1,len(distinct)):
+                for n2 in range(n1 + 1, len(distinct)):
                     edge_betweeen = "<" + str(distinct[n1]) + "," + str(distinct[n2]) + ">"
                     graph_edges.append(edge_betweeen)
                     graph_set = set(graph_edges)
                     graph_edges = list(graph_set)
 
-    for x in range(0,len(graph_edges)):
+    for x in range(0, len(graph_edges)):
         edge = graph_edges[x]
         edge = re.sub('<', '(', edge)
         edge = re.sub('>', ')', edge)
-        p1,p2 = ast.literal_eval(edge)
+        p1, p2 = ast.literal_eval(edge)
 
         for i in vertex_list:
-            vertex1=vertex_list[p1]
+            vertex1 = vertex_list[p1]
 
-            vertex2=vertex_list[p2]
+            vertex2 = vertex_list[p2]
 
-            v_x1,v_y1=ast.literal_eval(vertex1)
-            v_x2,v_y2=ast.literal_eval(vertex2)
+            v_x1, v_y1 = ast.literal_eval(vertex1)
+            v_x2, v_y2 = ast.literal_eval(vertex2)
             min_x1 = min(v_x1, v_x2)
             max_x1 = max(v_x1, v_x2)
             min_y1 = min(v_y1, v_y2)
             max_y1 = max(v_y1, v_y2)
-            check_p=vertex_list[i]
+            check_p = vertex_list[i]
 
-            c_x,c_y=ast.literal_eval(check_p)
-            if((bool(c_x!=min_x1) & bool( c_x !=max_x1)) | ((bool(c_y!=min_y1) & bool(c_y!=max_y1)))):
-                if(bool(c_x <= max_x1) & bool(c_x >= min_x1)):
-                    if(bool(c_y <= max_y1) & bool(c_y >= min_y1)):
-                        del_check="<" + str(p1) + "," + str(p2) + ">"
+            c_x, c_y = ast.literal_eval(check_p)
+            if ((bool(c_x != min_x1) & bool(c_x != max_x1)) | ((bool(c_y != min_y1) & bool(c_y != max_y1)))):
+                if (bool(c_x <= max_x1) & bool(c_x >= min_x1)):
+                    if (bool(c_y <= max_y1) & bool(c_y >= min_y1)):
+                        del_check = "<" + str(p1) + "," + str(p2) + ">"
 
                         duplicate_edges.append(del_check)
-                        duplicate_edges_set=set(duplicate_edges)
-                        duplicate_edges=list(duplicate_edges_set)
+                        duplicate_edges_set = set(duplicate_edges)
+                        duplicate_edges = list(duplicate_edges_set)
 
-
-    for g in range(0,len(duplicate_edges)):
+    for g in range(0, len(duplicate_edges)):
         graph_edges.remove(duplicate_edges[g])
-
 
     print "E ={"
     for u in graph_edges:
         print u
     print "}"
 
+def input():
+    command=sys.stdin.readline()
+    return command.replace('\n','')
+
 
 def main():
-
     while True:
-        user_input = raw_input()
+        user_input = input()
         if (user_input == ''):
             break
         elif (user_input[0] == 'r'):
@@ -317,14 +331,14 @@ def main():
 
         if command == 'a':
             try:
-                add_street(street_name,gps_coordinates)
+                add_street(street_name, gps_coordinates)
             except UnboundLocalError:
                 sys.stderr.write("Error: " + "please enter full command!" + "\n")
-                
+
 
         elif command == 'c':
             try:
-                change_street(street_name,gps_coordinates)
+                change_street(street_name, gps_coordinates)
             except UnboundLocalError:
                 sys.stderr.write("Error: " + "please enter full command!" + "\n")
 
