@@ -116,6 +116,7 @@ def display_graph():
     graph_set = set()
     duplicate_edges = list()
     vertex_list = dict()
+    duplicate_edges1=list()
     list_intersection = list()
     vertices_intersection = list()
     y = list()
@@ -202,6 +203,131 @@ def display_graph():
 
                         else:
                             pass
+                    elif (coordinate1 == coordinate4):
+
+                        intersection = "(" + str(x4) + "," + str(y4) + ")"
+                        list_vertices.extend(list_coordinates)
+                        list_intersection.append(intersection)
+                        vertices_intersection.append(list_coordinates)
+                        list_vertices.append(intersection)
+                        graph_set = set(list_vertices)
+                        list_vertices = list(graph_set)
+                        for z in range(0, len(list_vertices)):
+                            vertex_list[z + 1] = list_vertices[z]
+                    elif (coordinate2 == coordinate3):
+                        intersection = "(" + str(x3) + "," + str(y3) + ")"
+                        list_vertices.extend(list_coordinates)
+                        list_intersection.append(intersection)
+                        vertices_intersection.append(list_coordinates)
+                        list_vertices.append(intersection)
+                        graph_set = set(list_vertices)
+                        list_vertices = list(graph_set)
+                        for z in range(0, len(list_vertices)):
+                            vertex_list[z + 1] = list_vertices[z]
+
+                    elif (x1 == x2 == x3 == x4):
+                        y_range1 = abs(y2 - y1)
+                        y_range2 = abs(y4 - y3)
+                        if (y_range1 > y_range2):
+                            big_line = 1
+                        elif (y_range2 > y_range1):
+                            big_line = 2
+                        if (big_line == 1):
+                            if (y3 > min_y1 and y3 < max_y1):
+                                intersection = "(" + str(x3) + "," + str(y3) + ")"
+                                list_vertices.extend(list_coordinates)
+                                list_intersection.append(intersection)
+                                vertices_intersection.append(list_coordinates)
+                                list_vertices.append(intersection)
+                                graph_set = set(list_vertices)
+                                list_vertices = list(graph_set)
+                                for z in range(0, len(list_vertices)):
+                                    vertex_list[z + 1] = list_vertices[z]
+                            if (y4 > min_y1 and y4 < max_y1):
+                                intersection = "(" + str(x4) + "," + str(y4) + ")"
+                                list_vertices.extend(list_coordinates)
+                                list_intersection.append(intersection)
+                                vertices_intersection.append(list_coordinates)
+                                list_vertices.append(intersection)
+                                graph_set = set(list_vertices)
+                                list_vertices = list(graph_set)
+                                for z in range(0, len(list_vertices)):
+                                    vertex_list[z + 1] = list_vertices[z]
+
+                        if (big_line == 2):
+                            if (y1 > min_y2 and y1 < max_y2):
+                                intersection = "(" + str(x1) + "," + str(y1) + ")"
+                                list_vertices.extend(list_coordinates)
+                                list_intersection.append(intersection)
+                                vertices_intersection.append(list_coordinates)
+                                list_vertices.append(intersection)
+                                graph_set = set(list_vertices)
+                                list_vertices = list(graph_set)
+                                for z in range(0, len(list_vertices)):
+                                    vertex_list[z + 1] = list_vertices[z]
+                            if (y2 > min_y2 and y2 < max_y2):
+                                intersection = "(" + str(x2) + "," + str(y2) + ")"
+                                list_vertices.extend(list_coordinates)
+                                list_intersection.append(intersection)
+                                vertices_intersection.append(list_coordinates)
+                                list_vertices.append(intersection)
+                                graph_set = set(list_vertices)
+                                list_vertices = list(graph_set)
+                                for z in range(0, len(list_vertices)):
+                                    vertex_list[z + 1] = list_vertices[z]
+
+                    elif (y1 == y2 == y3 == y4):
+                        x_range1 = abs(x2 - x1)
+                        x_range2 = abs(x4 - x3)
+                        if (x_range1 > x_range2):
+                            big_line = 1
+                        elif (x_range2 > x_range1):
+                            big_line = 2
+                        if (big_line == 1):
+                            if (x3 > min_x1 and x3 < max_x1):
+                                intersection = "(" + str(x3) + "," + str(y3) + ")"
+                                list_vertices.extend(list_coordinates)
+                                list_intersection.append(intersection)
+                                vertices_intersection.append(list_coordinates)
+                                list_vertices.append(intersection)
+                                graph_set = set(list_vertices)
+                                list_vertices = list(graph_set)
+                                for z in range(0, len(list_vertices)):
+                                    vertex_list[z + 1] = list_vertices[z]
+                            if (x4 > min_x1 and x4 < max_x1):
+                                intersection = "(" + str(x4) + "," + str(y4) + ")"
+                                list_vertices.extend(list_coordinates)
+                                list_intersection.append(intersection)
+                                vertices_intersection.append(list_coordinates)
+                                list_vertices.append(intersection)
+                                graph_set = set(list_vertices)
+                                list_vertices = list(graph_set)
+                                for z in range(0, len(list_vertices)):
+                                    vertex_list[z + 1] = list_vertices[z]
+
+                        if (big_line == 2):
+                            if (x1 > min_x2 and x1 < max_x2):
+                                intersection = "(" + str(x1) + "," + str(y1) + ")"
+                                list_vertices.extend(list_coordinates)
+                                list_intersection.append(intersection)
+                                vertices_intersection.append(list_coordinates)
+                                list_vertices.append(intersection)
+                                graph_set = set(list_vertices)
+                                list_vertices = list(graph_set)
+                                for z in range(0, len(list_vertices)):
+                                    vertex_list[z + 1] = list_vertices[z]
+
+                            if (x2 > min_x2 and x2 < max_x2):
+                                intersection = "(" + str(x2) + "," + str(y2) + ")"
+                                list_vertices.extend(list_coordinates)
+                                list_intersection.append(intersection)
+                                vertices_intersection.append(list_coordinates)
+                                list_vertices.append(intersection)
+                                graph_set = set(list_vertices)
+                                list_vertices = list(graph_set)
+                                for z in range(0, len(list_vertices)):
+                                    vertex_list[z + 1] = list_vertices[z]
+
 
                     coordinates_st2 = coordinates_st2 + 1
                 coordinates_st1 = coordinates_st1 + 1
@@ -263,6 +389,16 @@ def display_graph():
                     graph_set = set(graph_edges)
                     graph_edges = list(graph_set)
 
+
+    for g in range(0,len(graph_edges)):
+        edge_1 = graph_edges[g]
+        edge_1 = re.sub('<', '(', edge_1)
+        edge_1 = re.sub('>', ')', edge_1)
+        pair1,pair2 = ast.literal_eval(edge_1)
+        if(pair1==pair2):
+            delete="<" + str(pair1) + "," + str(pair2) + ">"
+            duplicate_edges.append(delete)
+
     for x in range(0, len(graph_edges)):
         edge = graph_edges[x]
         edge = re.sub('<', '(', edge)
@@ -294,6 +430,25 @@ def display_graph():
 
     for g in range(0, len(duplicate_edges)):
         graph_edges.remove(duplicate_edges[g])
+
+    for l in range(0, len(graph_edges)):
+        for l1 in range(l + 1, len(graph_edges)):
+            edge_1 = graph_edges[l]
+            edge_1 = re.sub('<', '(', edge_1)
+            edge_1 = re.sub('>', ')', edge_1)
+            pair1, pair2 = ast.literal_eval(edge_1)
+            edge_2 = graph_edges[l1]
+            edge_2 = re.sub('<', '(', edge_2)
+            edge_2 = re.sub('>', ')', edge_2)
+            pair3, pair4 = ast.literal_eval(edge_2)
+            if (pair1 == pair4 and pair2 == pair3):
+                delete = "<" + str(pair1) + "," + str(pair2) + ">"
+                duplicate_edges1.append(delete)
+                duplicate_edges_set1 = set(duplicate_edges1)
+                duplicate_edges1 = list(duplicate_edges_set1)
+
+    for m in range(0, len(duplicate_edges1)):
+        graph_edges.remove(duplicate_edges1[m])
 
     print "E ={"
     for u in graph_edges:
